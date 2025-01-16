@@ -6,11 +6,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: 309e7790bc233bf3726f9ff7ff6a7ba643776d0fb0341bd6571bc57a4c105dd0
 
 build:
-  number: 0
+  number: 1
   noarch: python
   entry_points:
     - version= watex.cli:version
@@ -19,7 +19,7 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.9
+    - python {{ python_min }}
   run:
     - cython >=0.29.33
     - numpy >=1.23.0
@@ -32,7 +32,7 @@ requirements:
     - six >=1.16.0
     - xgboost >=1.7.0
     - pyproj >=3.3.0
-    - python >=3.9
+    - python >={{ python_min }}
     - setuptools
     - pytables >=3.6.1
     - h5py >=3.2.0
@@ -65,6 +65,7 @@ test:
     - version --help
   requires:
     - pytest
+    - python {{ python_min }}
 
 about:
   home: https://github.com/WEgeophysics/watex
